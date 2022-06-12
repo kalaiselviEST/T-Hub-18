@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Books - Online Stores</title>
+
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
+
+
+
+    <style>
+        select.form-control {
+            border: 1px solid #E0E0E0 !important;
+            padding: 5px 0px !important;
+            height: 40px;
+            padding-left: 10px !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header  bg-secondaryColor">
+        <nav class="navbar navbar-expand-sm">
+            <a class="" href="#">
+                <div class="logo"></div>
+            </a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav m-auto">
+                    <li class="nav-item  dashboard">
+                        <a class="nav-link" href="#">Dashboard</a>
+                    </li>
+                    <li class="nav-item settings active">
+                        <a class="nav-link" href="#">Settlements</a>
+                    </li>
+                    <li class="nav-item settings">
+                        <a class="nav-link" href="#">Settings</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item  dropdown mr-4 mt-2">
+                        <a href="#" data-toggle="dropdown" class="nav-link px-0 nav-link-user" aria-expanded="true">
+                            <i class="fa fa-bell text-white" style="font-size: 20px;"></i>
+                            <span class="badge">5</span>
+                        </a>
+                        <div class="notifications__wrapper dropdown-menu dropdown-menu-right pullDown">
+                            <div class="card border-0">
+                                <div class="card-header bg-white flex-between">
+                                    <h5>Notifications</h5>
+                                    <label class="label label-danger">New</label>
+                                </div>
+                                <div class="card-body">
+                                    <div class="notification__item">
+                                        <div class="row">
+                                            <div class="notification__profile col-sm-2">
+                                            </div>
+                                            <div class="notification__content col-sm-10">
+                                                <h5 class="notification-user">John Doe</h5>
+                                                <p class="notification-msg mb-0">Lorem ipsum dolor sit amet, consectetuer elit.</p>
+                                                <small class="text-muted">30 mins ago  </small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="notification__item">
+                                        <div class="row">
+                                            <div class="notification__profile col-sm-2">
+                                            </div>
+                                            <div class="notification__content col-sm-10">
+                                                <h5 class="notification-user">John Doe</h5>
+                                                <p class="notification-msg mb-0">Lorem ipsum dolor sit amet, consectetuer elit.</p>
+                                                <small class="text-muted">30 mins ago  </small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="notification__item">
+                                        <div class="row">
+                                            <div class="notification__profile col-sm-2">
+                                            </div>
+                                            <div class="notification__content col-sm-10">
+                                                <h5 class="notification-user">John Doe</h5>
+                                                <p class="notification-msg mb-0">Lorem ipsum dolor sit amet, consectetuer elit.</p>
+                                                <small class="text-muted">30 mins ago  </small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item  dropdown">
+                        <a href="#" data-toggle="dropdown" class="nav-link px-0 nav-link-user" aria-expanded="true">
+                            <div id="profileIcon" class="profile-icon"></div>
+                            <span id="fullName" class="d-none">Penny Liu</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right pullDown">
+                            <a href="#" class="dropdown-item has-icon"> <i class="fa fa-user"></i> Profile</a>
+                            <a href="#" class="dropdown-item has-icon"> <i class="fa fa-bolt"></i> Activities </a>
+                            <a href="" class="dropdown-item has-icon"> <i class="fa fa-cog"></i> Settings </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item  text-danger"> <i class="fa fa-sign-out" aria-hidden="true"></i> Logout
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div class="screen-wrapper online__store__wrapper">
+
+        <div class="options mx-4 mt-5 d-flex justify-content-between align-items-center">
+            <h3 class="pb-4">Online Store / Channels </h3>
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="mr-2">
+                    <label for="" style=" color: #78838e;" class="mb-0">Viewing 1 to 25 of 29 </label>
+                </div>
+                <div>
+                    <div class="pagination">
+                        <div class="leftpagprev">‹‹</div>
+                        <div class="leftpag">‹</div>
+                        <div class="rightpag">›</div>
+                        <div class="rightpagnext">››</div>
+                        <div class="pagnum">
+                            <select name="" id="">
+                                <option value="">1</option>
+                                <option value="">2</option>
+                                <option value="">3</option>
+                                <option value="">4</option>
+                                <option value="">5</option>
+                                <option value="">6</option>
+                                <option value="">7</option>
+                                <option value="">8</option>
+                                <option value="">9</option>
+                                <option value="">10</option>
+                            </select>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="addItem-container">
+            <a href="" class="btn py-2" data-toggle="modal" data-target="#addStore"> <i class="fa fa-plus ml-2" aria-hidden="true"></i> Add New Store </a>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card rounded  border-0">
+                    <div class="card-body px-5 bg-white rounded">
+                        <div class="table-responsive">
+                            <table id="example1" style="width:100%" class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th class="selector nosort">
+                                            <input type="checkbox" id="all_orders">
+                                        </th>
+                                        <th>Channel ID</th>
+                                        <th>Marketplcae</th>
+                                        <th>Store Name </th>
+                                        <th>Modified </th>
+                                        <th class="text-center">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="selector">
+                                            <input type="checkbox" id="all_orders">
+                                        </td>
+                                        <td>1383</td>
+                                        <td>XCart </td>
+                                        <td>XCart Store 1</td>
+                                        <td>1/29/2021 6:38 PM</td>
+                                        <td class="text-center">
+                                            <i class='bx bx-edit-alt text-success' data-toggle="modal" data-target="#exampleModalCenter"></i>
+                                            <i class='bx bx-trash text-danger'></i>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="selector">
+                                            <input type="checkbox" id="all_orders">
+                                        </td>
+                                        <td>1383</td>
+                                        <td>XCart </td>
+                                        <td>XCart Store 1</td>
+                                        <td>1/29/2021 6:38 PM</td>
+                                        <td class="text-center">
+                                            <i class='bx bx-edit-alt text-success ' data-toggle="modal" data-target="#exampleModalCenter"></i>
+                                            <i class='bx bx-trash text-danger'></i>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="selector">
+                                            <input type="checkbox" id="all_orders">
+                                        </td>
+                                        <td>1383</td>
+                                        <td>XCart </td>
+                                        <td>XCart Store 1</td>
+                                        <td>1/29/2021 6:38 PM</td>
+                                        <td class="text-center">
+                                            <i class='bx bx-edit-alt text-success ' data-toggle="modal" data-target="#exampleModalCenter"></i>
+                                            <i class='bx bx-trash text-danger'></i>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="selector">
+                                            <input type="checkbox" id="all_orders">
+                                        </td>
+                                        <td>1383</td>
+                                        <td>XCart </td>
+                                        <td>XCart Store 1</td>
+                                        <td>1/29/2021 6:38 PM</td>
+                                        <td class="text-center">
+                                            <i class='bx bx-edit-alt text-success' data-toggle="modal" data-target="#exampleModalCenter"></i>
+                                            <i class='bx bx-trash text-danger'></i>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="selector">
+                                            <input type="checkbox" id="all_orders">
+                                        </td>
+                                        <td>1383</td>
+                                        <td>XCart </td>
+                                        <td>XCart Store 1</td>
+                                        <td>1/29/2021 6:38 PM</td>
+                                        <td class="text-center">
+                                            <i class='bx bx-edit-alt text-success' data-toggle="modal" data-target="#exampleModalCenter"></i>
+                                            <i class='bx bx-trash text-danger'></i>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="selector">
+                                            <input type="checkbox" id="all_orders">
+                                        </td>
+                                        <td>1383</td>
+                                        <td>XCart </td>
+                                        <td>XCart Store 1</td>
+                                        <td>1/29/2021 6:38 PM</td>
+                                        <td class="text-center">
+                                            <i class='bx bx-edit-alt text-success' data-toggle="modal" data-target="#exampleModalCenter"></i>
+                                            <i class='bx bx-trash text-danger'></i>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="selector">
+                                            <input type="checkbox" id="all_orders">
+                                        </td>
+                                        <td>1383</td>
+                                        <td>XCart </td>
+                                        <td>XCart Store 1</td>
+                                        <td>1/29/2021 6:38 PM</td>
+                                        <td class="text-center">
+                                            <i class='bx bx-edit-alt text-success' data-toggle="modal" data-target="#exampleModalCenter"></i>
+                                            <i class='bx bx-trash text-danger'></i>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="selector">
+                                            <input type="checkbox" id="all_orders">
+                                        </td>
+                                        <td>1383</td>
+                                        <td>XCart </td>
+                                        <td>XCart Store 1</td>
+                                        <td>1/29/2021 6:38 PM</td>
+                                        <td class="text-center">
+                                            <i class='bx bx-edit-alt text-success' data-toggle="modal" data-target="#exampleModalCenter"></i>
+                                            <i class='bx bx-trash text-danger'></i>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="selector">
+                                            <input type="checkbox" id="all_orders">
+                                        </td>
+                                        <td>1383</td>
+                                        <td>XCart </td>
+                                        <td>XCart Store 1</td>
+                                        <td>1/29/2021 6:38 PM</td>
+                                        <td class="text-center">
+                                            <i class='bx bx-edit-alt text-success' data-toggle="modal" data-target="#exampleModalCenter"></i>
+                                            <i class='bx bx-trash text-danger'></i>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="selector">
+                                            <input type="checkbox" id="all_orders">
+                                        </td>
+                                        <td>1383</td>
+                                        <td>XCart </td>
+                                        <td>XCart Store 1</td>
+                                        <td>1/29/2021 6:38 PM</td>
+                                        <td class="text-center">
+                                            <i class='bx bx-edit-alt text-success' data-toggle="modal" data-target="#exampleModalCenter"></i>
+                                            <i class='bx bx-trash text-danger'></i>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="selector">
+                                            <input type="checkbox" id="all_orders">
+                                        </td>
+                                        <td>1383</td>
+                                        <td>XCart </td>
+                                        <td>XCart Store 1</td>
+                                        <td>1/29/2021 6:38 PM</td>
+                                        <td class="text-center">
+                                            <i class='bx bx-edit-alt text-success' data-toggle="modal" data-target="#exampleModalCenter"></i>
+                                            <i class='bx bx-trash text-danger'></i>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="selector">
+                                            <input type="checkbox" id="all_orders">
+                                        </td>
+                                        <td>1383</td>
+                                        <td>XCart </td>
+                                        <td>XCart Store 1</td>
+                                        <td>1/29/2021 6:38 PM</td>
+                                        <td class="text-center">
+                                            <i class='bx bx-edit-alt text-success' data-toggle="modal" data-target="#exampleModalCenter"></i>
+                                            <i class='bx bx-trash text-danger'></i>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="selector">
+                                            <input type="checkbox" id="all_orders">
+                                        </td>
+                                        <td>1383</td>
+                                        <td>XCart </td>
+                                        <td>XCart Store 1</td>
+                                        <td>1/29/2021 6:38 PM</td>
+                                        <td class="text-center">
+                                            <i class='bx bx-edit-alt text-success' data-toggle="modal" data-target="#exampleModalCenter"></i>
+                                            <i class='bx bx-trash text-danger'></i>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="selector">
+                                            <input type="checkbox" id="all_orders">
+                                        </td>
+                                        <td>1383</td>
+                                        <td>XCart </td>
+                                        <td>XCart Store 1</td>
+                                        <td>1/29/2021 6:38 PM</td>
+                                        <td class="text-center">
+                                            <i class='bx bx-edit-alt text-success' data-toggle="modal" data-target="#exampleModalCenter"></i>
+                                            <i class='bx bx-trash text-danger'></i>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="selector">
+                                            <input type="checkbox" id="all_orders">
+                                        </td>
+                                        <td>1383</td>
+                                        <td>XCart </td>
+                                        <td>XCart Store 1</td>
+                                        <td>1/29/2021 6:38 PM</td>
+                                        <td class="text-center">
+                                            <i class='bx bx-edit-alt text-success' data-toggle="modal" data-target="#exampleModalCenter"></i>
+                                            <i class='bx bx-trash text-danger'></i>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="selector">
+                                            <input type="checkbox" id="all_orders">
+                                        </td>
+                                        <td>1383</td>
+                                        <td>XCart </td>
+                                        <td>XCart Store 1</td>
+                                        <td>1/29/2021 6:38 PM</td>
+                                        <td class="text-center">
+                                            <i class='bx bx-edit-alt text-success' data-toggle="modal" data-target="#exampleModalCenter"></i>
+                                            <i class='bx bx-trash text-danger'></i>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="addStore" tabindex="-1" role="dialog" aria-labelledby="addStore" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header ">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Add Online Store</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="client">
+
+                        <div class="row m-3">
+
+                            <div class="col-lg-2 image-item" onclick="location.href='';">
+                                <img src="assets/images/client/trans_XCart.gif" class="img-fluid">
+                            </div>
+                            <div class="col-lg-2 image-item">
+                                <img src="assets/images/client/BigCommerceV2_New.png" class="img-fluid">
+                            </div>
+                            <div class="col-lg-2 image-item">
+                                <img src="assets/images/client/magento2.png" class="img-fluid">
+                            </div>
+                            <div class="col-lg-2 image-item">
+                                <img src="assets/images/client/trans_virtuemart_slogan_blue.gif" class="img-fluid">
+                            </div>
+                            <div class="col-lg-2 image-item">
+                                <img src="assets/images/client/trans_customcart.gif" class="img-fluid">
+                            </div>
+                            <div class="col-lg-2 image-item">
+                                <img src="assets/images/client/trans_aspdotnetstorefront.gif" class="img-fluid">
+                            </div>
+                            <div class="col-lg-2 image-item">
+                                <img src="assets/images/client/trans_godaddy.gif" class="img-fluid">
+                            </div>
+                            <div class="col-lg-2 image-item">
+                                <img src="assets/images/client/trans_osCommerce.gif" class="img-fluid">
+                            </div>
+                            <div class="col-lg-2 image-item">
+                                <img src="assets/images/client/trans_3dcart-logo.gif" class="img-fluid">
+                            </div>
+                            <div class="col-lg-2 image-item">
+                                <img src="assets/images/client/woocommerce-logo.png" class="img-fluid">
+                            </div>
+                            <div class="col-lg-2 image-item">
+                                <img src="assets/images/client/trans_ebay.gif" class="img-fluid">
+                            </div>
+                            <div class="col-lg-2 image-item">
+                                <img src="assets/images/client/trans_miva.gif" class="img-fluid">
+                            </div>
+                            <div class="col-lg-2 image-item">
+                                <img src="assets/images/client/trans_shopify.gif" class="img-fluid">
+                            </div>
+                            <div class="col-lg-2 image-item">
+                                <img src="assets/images/client/Ecwid.gif" class="img-fluid">
+                            </div>
+                            <div class="col-lg-2 image-item">
+                                <img src="assets/images/client/Volusion_New.png" class="img-fluid">
+                            </div>
+                            <div class="col-lg-2 image-item">
+                                <img src="assets/images/client/trans_yahoo_logo.png" class="img-fluid">
+                            </div>
+                            <div class="col-lg-2 image-item">
+                                <img src="assets/images/client/trans_Amazon-logo.gif" class="img-fluid">
+                            </div>
+                            <div class="col-lg-2 image-item">
+                                <img src="assets/images/client/trans_cscart.gif" class="img-fluid">
+                            </div>
+                            <div class="col-lg-2 image-item">
+                                <img src="assets/images/client/trans_cscart.gif" class="img-fluid">
+                            </div>
+                            <div class="col-lg-2 image-item">
+                                <img src="assets/images/client/ChannelAdvisor.png" class="img-fluid">
+                            </div>
+                            <div class="col-lg-2 image-item">
+                                <img src="assets/images/client/web_shop_manager_logo.png" class="img-fluid">
+                            </div>
+                            <div class="col-lg-2 image-item">
+                                <img src="assets/images/client/Etsy_logo.png" class="img-fluid">
+                            </div>
+                            <div class="col-lg-2 image-item">
+                                <img src="assets/images/client/Reverb_logo.png" class="img-fluid">
+                            </div>
+                            <div class="col-lg-2 image-item">
+                                <img src="assets/images/client/magento2.png" class="img-fluid">
+                            </div>
+                            <div class="col-lg-2 image-item">
+                                <img src="assets/images/client/Walmart_Logo.jpg" class="img-fluid">
+                            </div>
+                            <div class="col-lg-2 image-item">
+                                <img src="assets/images/client/squarespace-logo.png" class="img-fluid">
+                            </div>
+                            <div class="col-lg-2 image-item">
+                                <img src="assets/images/client/ShipStation.jpg" class="img-fluid">
+                            </div>
+                            <div class="col-lg-2 image-item">
+                                <img src="assets/images/client/Faire.jpg" class="img-fluid">
+                            </div>
+                            <div class="col-lg-2 image-item">
+                                <img src="assets/images/client/Zen-cart.png" class="img-fluid">
+                            </div>
+                            <div class="col-lg-2 image-item">
+                                <img src="assets/images/client/wayfair.png" class="img-fluid">
+                            </div>
+                            <div class="col-lg-2 image-item">
+                                <img src="assets/images/client/prestashop-Logo.svg" class="img-fluid">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-0">
+                        <button type="button" class="btn shadow border-0 mr-4 action-btn "> Cancel</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header ">
+                        <h5 class="modal-title" id="exampleModalLongTitle"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <div class="row mx-3">
+                                <div class="col-sm-12 col-md-12 col-lg-3 col-xl-3 mt-3">
+                                    <div class="nav flex-lg-column flex-sm-row flex-md-row nav-pills nav-pills-custom tab-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                        <a class="nav-link  active" id="v-pills-store-tab" data-toggle="pill" href="#v-pills-store" role="tab" aria-controls="v-pills-store" aria-selected="true">
+                                            Store Information</a>
+
+                                        <a class="nav-link" id="v-pills-company-tab" data-toggle="pill" href="#v-pills-company" role="tab" aria-controls="v-pills-company" aria-selected="false">
+
+                                          Company Information</a>
+
+                                        <a class="nav-link" id="v-pills-other-tab" data-toggle="pill" href="#v-pills-other" role="tab" aria-controls="v-pills-other" aria-selected="false">
+
+                                         Other Settings</a>
+
+                                        <a class="nav-link" id="v-pills-products-tab" data-toggle="pill" href="#v-pills-products" role="tab" aria-controls="v-pills-products" aria-selected="false">
+
+                                          Products</a>
+
+                                        <a class="nav-link" id="v-pills-packing-tab" data-toggle="pill" href="#v-pills-packing" role="tab" aria-controls="v-pills-packing" aria-selected="false">
+
+                                           Packing List</a>
+
+                                        <a class="nav-link" id="v-pills-shipment-tab" data-toggle="pill" href="#v-pills-shipment" role="tab" aria-controls="v-pills-shipment" aria-selected="false">
+
+                                          Shipment Notifications</a>
+                                        <a class="nav-link" id="v-pills-fulfillment-tab" data-toggle="pill" href="#v-pills-fulfillment" role="tab" aria-controls="v-pills-settings" aria-selected="false">
+
+                                          Fulfillment</a>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-lg-9 mt-3">
+                                    <!-- Tabs content -->
+                                    <div class="tab-content" id="v-pills-tabContent">
+                                        <div class="tab-pane fade  rounded show active" id="v-pills-store" role="tabpanel" aria-labelledby="v-pills-store-tab">
+                                            <div class="card border-0 shadow-sm">
+                                                <div class="card-header">
+                                                    <h5>Store Information</h5>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="form-group row">
+                                                        <label for="" class="col-sm-5 col-md-5 col-lg-4 col-xl-4">
+                                                                                Store Name <i class="fa fa-asterisk text-danger" aria-hidden="true"></i>
+                                                        </label>
+                                                        <input type="text" class="form-control form-control-sm col-sm-4 " id="" value="" />
+                                                        <div class="form-check form-check-inline col-sm-2 ml-3">
+                                                            <input class="form-check-input" type="checkbox" name="" id="" value="">
+                                                            <span class="ml-2">Active</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="" class="col-sm-5 col-md-5 col-lg-4 col-xl-4">
+                                                                             Last Order Number Downloaded <i class="fa fa-asterisk text-danger" aria-hidden="true"></i>
+                                                                            </label>
+                                                        <input type="text" class="form-control form-control-sm col-sm-4" id="" value="" />
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="" class="col-sm-5 col-md-5 col-lg-4 col-xl-4">
+                                                                              Order Download Start Date 
+                                                                            </label>
+                                                        <div class="col-sm-4 p-0 position-relative">
+                                                            <input readonly type="text" autocomplete="false" class="form-control form-control-sm date-input" id="orderDownloadDate" value="" placeholder="dd/mm/yyyy" />
+                                                            <i class="fa fa-calendar calendar-icon" aria-hidden="true"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="" class="col-sm-5 col-md-5 col-lg-4 col-xl-4">
+                                                                             Web Service URL <i class="fa fa-asterisk text-danger" aria-hidden="true"></i>
+                                                                            </label>
+                                                        <input type="text" class="form-control form-control-sm col-sm-4" id="" value="" />
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="" class="col-sm-5 col-md-5 col-lg-4 col-xl-4">
+                                                                           Website Admin Login  <i class="fa fa-asterisk text-danger" aria-hidden="true"></i>
+                                                                            </label>
+                                                        <input type="text" class="form-control form-control-sm col-sm-4" id="" value="" />
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="" class="col-sm-5 col-md-5 col-lg-4 col-xl-4">
+                                                                           Website Admin Password   <i class="fa fa-asterisk text-danger" aria-hidden="true"></i>
+                                                                            </label>
+                                                        <input type="text" class="form-control form-control-sm col-sm-4" id="" value="" />
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="" class="col-sm-5 col-md-5 col-lg-4 col-xl-4">
+                                                                           Additional Information  
+                                                                            </label>
+                                                        <input type="text" class="form-control form-control-sm col-sm-4" id="" />
+                                                        <button class="btn btn-info col-sm-3 col-md-3 mx-2 py-2" style="border-radius: 20px; ">Test Connection</button>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="" class="col-sm-5 col-md-5 col-lg-4"> </label>
+                                                        <input type="checkbox" class="" id="" value="">
+                                                        <label for="" class="col-md-6 col-lg-6">Set this store to Auto-Download orders periodically</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade  rounded" id="v-pills-company" role="tabpanel" aria-labelledby="v-pills-company-tab">
+                                            <div class="card border-0 shadow-sm">
+                                                <div class="card-header ">
+                                                    <h5>Company Information</h5>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <div class="row">
+                                                                <div class="col-lg-6">
+                                                                    <div class="form-group row">
+                                                                        <label for="staticEmail" class="col-sm-4 col-form-label">Company Name </label>
+                                                                        <div class="col-sm-8">
+                                                                            <input type="text" class="form-control form-control-sm" id="fieldOne">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group row">
+                                                                        <label for="staticEmail" class="col-sm-4 col-form-label">Contact Name  </label>
+
+                                                                        <div class="col-sm-8">
+                                                                            <input type="text" class="form-control form-control-sm" id="fieldTwo">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group row">
+                                                                        <label for="staticEmail" class="col-sm-4 col-form-label">Address 1  </label>
+
+                                                                        <div class="col-sm-8">
+                                                                            <input type="text" class="form-control form-control-sm" id="fieldTwo">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group row">
+                                                                        <label for="staticEmail" class="col-sm-4 col-form-label">Address 2  </label>
+
+                                                                        <div class="col-sm-8">
+                                                                            <input type="text" class="form-control form-control-sm" id="fieldTwo">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group row">
+                                                                        <label for="staticEmail" class="col-sm-4 col-form-label">Phone Number  </label>
+                                                                        <div class="col-sm-8">
+                                                                            <input type="text" class="form-control form-control-sm" id="fieldTwo">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <div class="form-group row">
+                                                                        <label for="staticEmail" class="col-sm-4 col-form-label">City  </label>
+
+                                                                        <div class="col-sm-8">
+                                                                            <input type="text" class="form-control form-control-sm" id="fieldTwo">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group row">
+                                                                        <label for="staticEmail" class="col-sm-4 col-form-label">Country </label>
+
+                                                                        <div class="col-sm-8">
+                                                                            <input type="text" class="form-control form-control-sm" id="fieldTwo">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group row">
+                                                                        <label for="staticEmail" class="col-sm-4 col-form-label">State </label>
+                                                                        <div class="col-sm-8">
+                                                                            <input type="text" class="form-control form-control-sm" id="fieldTwo">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group row">
+                                                                        <label for="staticEmail" class="col-sm-4 col-form-label">ZIP  </label>
+
+                                                                        <div class="col-sm-8">
+                                                                            <input type="text" class="form-control form-control-sm" id="fieldTwo">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group row">
+                                                                        <label for="staticEmail" class="col-sm-4 col-form-label">Email </label>
+
+                                                                        <div class="col-sm-8">
+                                                                            <input type="text" class="form-control form-control-sm" id="fieldTwo">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-4 col-md-5">
+                                                            <div class="image-upload border bg-light">
+                                                                <label for="file-input">
+                                                                                        <img src="https://icon-library.net/images/upload-photo-icon/upload-photo-icon-21.jpg" class="img-fluid" height="50" width="50">
+                                                                                    </label>
+                                                                <p>Add Company Logo</p>
+                                                                <input id="file-input" type="file">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade  rounded" id="v-pills-other" role="tabpanel" aria-labelledby="v-pills-other-tab">
+                                            <div class="card border-0 shadow-sm">
+                                                <div class="card-header">
+                                                    <h5>Other Settings</h5>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="form-group row">
+                                                        <label for="staticEmail" class="col-sm-6 col-md-7 col-form-label">Login :  </label>
+                                                        <div class="col-sm-6 col-md-5">
+                                                            <input type="text" class="form-control form-control-sm" id="fieldOne">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="staticEmail" class="col-sm-6 col-md-7 col-form-label">Password :  </label>
+                                                        <div class="col-sm-6 col-md-5">
+                                                            <input type="text" class="form-control form-control-sm" id="fieldOne">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="staticEmail" class="col-sm-6 col-md-7 col-form-label">Number of orders to download in one batch :  </label>
+                                                        <div class="col-sm-6 col-md-5">
+                                                            <input type="text" class="form-control form-control-sm" id="fieldOne">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="staticEmail" class="col-sm-6 col-md-7 col-form-label">Add this prefix to web order numbers :  </label>
+                                                        <div class="col-sm-6 col-md-5">
+                                                            <input type="text" class="form-control form-control-sm" id="fieldOne">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade  rounded" id="v-pills-products" role="tabpanel" aria-labelledby="v-pills-products-tab">
+                                            <div class="card border-0 shadow-sm">
+                                                <div class="card-header">
+                                                    <h5>Products</h5>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="form-group">
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                                            <label class="form-check-label" for="inlineRadio1">Do not save product data</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                                            <label class="form-check-label" for="inlineRadio2">Save product identified by SKU(ItemCode)</label>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="form-group row">
+                                                        <label for="staticEmail" class="col-sm-4 col-md-4 col-form-label">Product Weights are in </label>
+                                                        <div class="col-sm-4 col-md-4">
+                                                            <select class="form-control ">
+                                                                    <option selected>Lbs</option>
+                                                                    <option value="1">Ozs</option>                                                     
+                                                                </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input " type="checkbox" name="" id="" value="">
+                                                        <label class="form-check-label ml-10" for="inlineRadio1">Some Products are digital goods (no shipping)</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade  rounded" id="v-pills-packing" role="tabpanel" aria-labelledby="v-pills-packing-tab">
+                                            <div class="card border-0 shadow-sm">
+                                                <div class="card-header">
+                                                    <h5>Packing List</h5>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="form-group row">
+                                                        <label for="staticEmail" class="col-sm-5 col-md-5 col-form-label">Template for packing list :  </label>
+                                                        <div class="col-sm-6 col-md-6">
+                                                            <select class="form-control">
+                                                                    <option selected>Default Label with Price </option>
+                                                                    <option value="1">Default Label without Price </option>                                                     
+                                                                </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="staticEmail" class="col-sm-5 col-md-5 col-form-label">Thankyou Message on packing list :  </label>
+                                                        <div class="col-sm-6">
+                                                            <textarea name="" id="" cols="30" rows="10" class="form-control form-control-sm"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="staticEmail" class="col-sm-5 col-md-5 col-form-label">Show Bill To Information :  </label>
+                                                        <div class="col-sm-1 col-md-1">
+                                                            <div class="form-check form-check-inline mb-0">
+                                                                <input class="form-check-input" type="checkbox" name="" id="" value="">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade  rounded" id="v-pills-shipment" role="tabpanel" aria-labelledby="v-pills-shipment-tab">
+                                            <div class="card border-0 shadow-sm">
+                                                <div class="card-header">
+                                                    <h5>Shipment Notifications</h5>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="form-group row">
+                                                        <div class="form-check form-check-inline ml-3">
+                                                            <input class="form-check-input" type="checkbox" name="" id="" value="">
+                                                            <label class="form-check-label ml-10" for="">Update Shipping status and tracking to online stores</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="form-check form-check-inline ml-3">
+                                                            <input class="form-check-input" type="checkbox" name="" id="" value="">
+                                                            <label class="form-check-label ml-10" for="">
+                                                                  Partial shipments - send tracking updates after 1st shipments 
+                                                            If unchecked tracking updates will be sent after all items on order is shipped.
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="form-check form-check-inline ml-3">
+                                                            <input class="form-check-input" type="checkbox" name="" id="" value="">
+                                                            <label class="form-check-label ml-10" for="">Send Notification to Customer</label>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label for="staticEmail" class="col-sm-6 col-md-6 col-form-label">From Email : <i class="fa fa-asterisk text-danger" aria-hidden="true"></i> </label>
+                                                        <div class="col-sm-6 col-md-6">
+                                                            <input type="text" class="form-control form-control-sm" id="fieldOne">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="staticEmail" class="col-sm-6 col-md-6 col-form-label">Reply Email :  <i class="fa fa-asterisk text-danger" aria-hidden="true"></i></label>
+                                                        <div class="col-sm-6 col-md-6">
+                                                            <input type="text" class="form-control form-control-sm" id="fieldOne">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="staticEmail" class="col-sm-6 col-md-6 col-form-label">Bcc Notification Emails To :  </label>
+                                                        <div class="col-sm-6 col-md-6">
+                                                            <input type="text" class="form-control form-control-sm" id="fieldOne">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="staticEmail" class="col-sm-6 col-md-6 col-form-label">Use this template for Email Notification  :  </label>
+                                                        <div class="col-sm-6 col-md-6">
+                                                            <select class="form-control">
+                                            <option selected>Order Shipped Email Template</option>
+                                                <option value="1">Copy of Order Shipped Email Template</option>
+                                               
+                                        </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade  rounded" id="v-pills-fulfillment" role="tabpanel" aria-labelledby="v-pills-fulfillment-tab">
+                                            <div class="card border-0 shadow-sm">
+                                                <div class="card-header">
+                                                    <h5>Fulfillment</h5>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="form-group row">
+                                                        <label for="staticEmail" class="col-sm-6 col-form-label">Use this warehouse as default for shipping</label>
+                                                        <div class="col-sm-4">
+                                                            <select class="form-control">
+                                                                    <option selected>Warehouse</option>
+                                                                    <option value="1">Warehouse 1</option>
+                                                                    <option value="2">Warehouse 2</option>                   
+                                                                </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group row">
+                                                                <label for="staticEmail" class="col-sm-6 col-form-label">Ship Via : </label>
+                                                                <div class="col-sm-6">
+                                                                    <select class="form-control">
+                                                                    <option selected>UPS</option>
+                                                                    <option value="1">FEDEX 1</option>
+                                                                    <option value="2">Pitney Bowes 2</option> 
+                                                                       <option value="2">Endicia</option>                   
+                                                                </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label for="staticEmail" class="col-sm-6 col-form-label">Use this profile : </label>
+                                                                <div class="col-sm-6">
+                                                                    <select class="form-control">
+                                                                    <option selected>123</option>
+                                                                    <option value="1">UPS - Default</option>                           
+                                                                </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group row">
+                                                                <label for="staticEmail" class="col-sm-6 col-form-label">Ship Via : </label>
+                                                                <div class="col-sm-6">
+                                                                    <select class="form-control">
+                                                                    <option selected>UPS</option>
+                                                                    <option value="1">FEDEX 1</option>
+                                                                    <option value="2">Pitney Bowes 2</option> 
+                                                                       <option value="2">Endicia</option>                   
+                                                                </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label for="staticEmail" class="col-sm-6 col-form-label">Use this profile : </label>
+                                                                <div class="col-sm-6">
+                                                                    <select class="form-control">
+                                                                    <option selected>123</option>
+                                                                    <option value="1">UPS - Default</option>                           
+                                                                </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <table class="table">
+                                                        <thead class="thead-dark">
+                                                            <tr>
+                                                                <th scope="col">Requested Service <i class="fa fa-asterisk text-danger" aria-hidden="true"></i></th>
+                                                                <th scope="col">Carrier <i class="fa fa-asterisk text-danger" aria-hidden="true"></i></th>
+                                                                <th scope="col">Shipping Service <i class="fa fa-asterisk text-danger" aria-hidden="true"></i></th>
+                                                                <th scope="col">PackageType <i class="fa fa-asterisk text-danger" aria-hidden="true"></i></th>
+                                                                <th scope="col">Actions</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        </tbody>
+                                                    </table>
+                                                    <div class="">
+                                                        <a href="" class="text-info py-2" data-toggle="modal" data-target="#exampleModal2">Add Custom Mapping <i class="fa fa-plus ml-2" aria-hidden="true"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-0">
+                        <button type="button" class="btn shadow border-0 mr-4 action-btn "> Cancel</button>
+                        <button type="submit" class="btn text-white action-btn shadow" style="background-color: #36cb83;">Save</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModal2" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">New Custom Mapping</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group row">
+                            <label for="" class="col-sm-12">
+                               Enter the "Service Code" that is defined in the marketplace that define how system
+                            will identify this shipping service :
+                            </label>
+                            <input type="text" class="form-control form-control-sm col-sm-8 ml-4 mt-3" id="" value="" />
+                        </div>
+                    </div>
+                    <div class="modal-footer  border-0">
+                        <button type="button" class="btn px-5 py-2 mx-3 border" style="background-color: #D2D2D2; " data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-success px-5 py-2 text-white">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="assets/js/main.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="assets/js/jquery.nicescroll.min.js"></script>
+    <script src="https://use.fontawesome.com/1453813cc4.js"></script>
+    <script>
+        $(function() {
+            $("#orderDownloadDate").datepicker();
+            $('.fa-calendar').click(function() {
+                $("#orderDownloadDate").focus();
+            });
+        });
+    </script>
+</body>
+
+</html>

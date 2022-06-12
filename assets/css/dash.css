@@ -1,0 +1,203 @@
+    .options section.fr {
+        float: right
+    }
+    
+    .pagination {
+        border: 1px solid #dce4ed;
+        width: 130px;
+        float: right;
+        position: relative;
+        min-width: 100px;
+        height: 36px;
+    }
+    
+    .leftpagprev {
+        width: 20px;
+        height: 100%;
+        font-weight: 600;
+        color: #8b98a7;
+        text-align: center;
+        font-size: 21px;
+        cursor: pointer;
+    }
+    
+    .rightpagnext {
+        width: 20px;
+        height: 100%;
+        font-weight: 600;
+        color: #8b98a7;
+        text-align: center;
+        font-size: 21px;
+        cursor: pointer;
+    }
+    
+    .leftpag,
+    .rightpag {
+        width: 20px;
+        height: 100%;
+        background: #eaeff2;
+        font-weight: 600;
+        color: #8b98a7;
+        text-align: center;
+        font-size: 21px;
+        cursor: pointer;
+    }
+    
+    .leftpag:hover,
+    .rightpag:hover {
+        background: #dce4ed;
+    }
+    
+    .leftpagprev {
+        position: absolute;
+        top: 0;
+        left: 0px;
+    }
+    
+    .rightpagnext {
+        position: absolute;
+        top: 0;
+        right: 0px;
+    }
+    
+    .leftpag {
+        position: absolute;
+        top: 0;
+        left: 20px;
+    }
+    
+    .rightpag {
+        position: absolute;
+        right: 20px;
+        top: 0;
+    }
+    
+    .pagnum {
+        position: relative;
+    }
+    
+    .pagnum select {
+        border: none;
+        background: transparent;
+        position: absolute;
+        left: 45px;
+        height: 34px;
+        text-align: center;
+        text-indent: 1px;
+        color: #8b98a7;
+        text-overflow: '';
+        border: none !important;
+    }
+    
+    .pagnum input[type="text"] {
+        width: 54px;
+        border: none;
+        background: transparent;
+        position: absolute;
+        left: 29px;
+        height: 34px;
+        text-align: center;
+    }
+    
+    .pagup,
+    .pagdown {
+        position: absolute;
+        top: 10px;
+        left: 70px;
+        content: url(assets/small_arrow_up.png)
+    }
+    
+    .pagdown {
+        top: 20px;
+        content: url(assets/small_arrow_down.png);
+    }
+    
+    .pop_options {
+        background: #2f3439;
+        position: absolute;
+        top: 45px;
+        z-index: 999;
+    }
+    
+    .pop_options:after {
+        content: url(assets/pop_options_arrow.png);
+        position: absolute;
+        top: -12px;
+        left: 10px
+    }
+    
+    .pop_options {
+        color: white;
+        border-radius: 4px;
+    }
+    
+    .pop_options label {
+        font-size: 10px;
+        padding-top: 15px;
+        padding-left: 15px;
+    }
+    
+    .pop_options#refresh ul {
+        width: 200px;
+        padding-bottom: 10px;
+    }
+    
+    .pop_options#refresh li {
+        font-size: 12px;
+        padding: 5px 15px;
+    }
+    
+    .pop_options#refresh span {
+        font-size: 9px;
+        color: #aab4bd;
+        display: block;
+    }
+    
+    .pop_options#grid ul {
+        width: 300px;
+        padding: 13px 0 5px;
+    }
+    
+    .pop_options#grid ul li {
+        float: left;
+        width: 43%;
+        padding: 0px 14px;
+    }
+    
+    .pop_options#grid ul li:nth-child(even) {
+        width: 57%;
+    }
+    
+    .pop_options#grid [type="checkbox"]:not(:checked)+label,
+    .pop_options#grid [type="checkbox"]:checked+label {
+        padding-left: 25px;
+        padding-top: 5px;
+        font-weight: 100;
+        font-size: 9px;
+        backgroud: transparent;
+    }
+    
+    .pop_options#grid [type="checkbox"]:checked+label {
+        color: #90cbed;
+    }
+    
+    .pop_options#grid [type="checkbox"]:not(:checked)+label:before,
+    .pop_options#grid [type="checkbox"]:checked+label:before {
+        background: none;
+    }
+    
+    .pop_options#grid [type="checkbox"]:checked+label:before {
+        border: 1px solid #90cbed;
+    }
+    
+    .pop_options {
+        display: none;
+    }
+    
+    .alert {
+        position: absolute;
+    }
+    
+    footer {
+        background-color: #1F1F1F;
+    }

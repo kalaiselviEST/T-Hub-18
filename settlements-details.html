@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settlements History</title>
+
+    <link rel="stylesheet" href="assets/css/dash.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
+
+    <style>
+        .tab-content .dataTables_length {
+            display: none;
+        }
+        
+        .status-test {
+            background-color: #ddf1dd !important;
+            color: #5caa5c !important;
+            font-weight: 600;
+            text-transform: uppercase;
+            cursor: pointer;
+            min-width: 120px;
+        }
+        
+        .status-test .bx {
+            font-size: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header  bg-secondaryColor">
+        <nav class="navbar navbar-expand-sm">
+            <a class="" href="#">
+                <div class="logo"></div>
+            </a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav m-auto">
+                    <li class="nav-item  dashboard">
+                        <a class="nav-link" href="#">Dashboard</a>
+                    </li>
+                    <li class="nav-item settings active">
+                        <a class="nav-link" href="#">Settlements</a>
+                    </li>
+                    <li class="nav-item  orders">
+                        <a class="nav-link" href="#">Dashboard</a>
+                    </li>
+                    <li class="nav-item  shipments">
+                        <a class="nav-link" href="#">Orders</a>
+                    </li>
+                    <li class="nav-item  products">
+                        <a class="nav-link" href="#">Products</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item  dropdown mr-4 mt-2">
+                        <a href="#" data-toggle="dropdown" class="nav-link px-0 nav-link-user" aria-expanded="true">
+                            <i class="fa fa-bell text-dark" style="font-size: 20px;"></i>
+                            <span class="badge">5</span>
+                        </a>
+                        <div class="notifications__wrapper dropdown-menu dropdown-menu-right pullDown">
+                            <div class="card border-0">
+                                <div class="card-header bg-white flex-between">
+                                    <h5>Notifications</h5>
+                                    <label class="label label-danger">New</label>
+                                </div>
+                                <div class="card-body">
+                                    <div class="notification__item">
+                                        <div class="row">
+                                            <div class="notification__profile col-sm-2">
+                                            </div>
+                                            <div class="notification__content col-sm-10">
+                                                <h5 class="notification-user">John Doe</h5>
+                                                <p class="notification-msg mb-0">Lorem ipsum dolor sit amet, consectetuer elit.</p>
+                                                <small class="text-muted">30 mins ago  </small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="notification__item">
+                                        <div class="row">
+                                            <div class="notification__profile col-sm-2">
+                                            </div>
+                                            <div class="notification__content col-sm-10">
+                                                <h5 class="notification-user">John Doe</h5>
+                                                <p class="notification-msg mb-0">Lorem ipsum dolor sit amet, consectetuer elit.</p>
+                                                <small class="text-muted">30 mins ago  </small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="notification__item">
+                                        <div class="row">
+                                            <div class="notification__profile col-sm-2">
+                                            </div>
+                                            <div class="notification__content col-sm-10">
+                                                <h5 class="notification-user">John Doe</h5>
+                                                <p class="notification-msg mb-0">Lorem ipsum dolor sit amet, consectetuer elit.</p>
+                                                <small class="text-muted">30 mins ago  </small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item  dropdown">
+                        <a href="#" data-toggle="dropdown" class="nav-link px-0 nav-link-user" aria-expanded="true">
+                            <div id="profileIcon" class="profile-icon"></div>
+                            <span id="fullName" class="d-none">Penny Liu</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right pullDown">
+                            <a href="#" class="dropdown-item has-icon"> <i class="fa fa-user"></i> Profile</a>
+                            <a href="#" class="dropdown-item has-icon"> <i class="fa fa-bolt"></i> Activities </a>
+                            <a href="" class="dropdown-item has-icon"> <i class="fa fa-cog"></i> Settings </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item  text-danger"> <i class="fa fa-sign-out" aria-hidden="true"></i> Logout
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div class="settlements__details__wrapper screen-wrapper">
+        <h3 class="pb-4 mx-5">Settlements History</h3>
+        <div class="options mx-4 my-2 d-flex justify-content-between align-items-center ">
+            <div class=" d-flex justify-content-between align-items-center">
+                <button class="btn bg-transparent">
+                    <div class="refresh-icon border py-2 px-2 mr-3">
+                    <img src="assets/css/assets/icon_dash_refresh.png" class="mr-2"> Fetch Settlements
+                </div>
+                </button>
+                <form action="" class="f1">
+                    <div class="search-box d-flex  align-items-center">
+                        <input type="search" name="" id="" class="form-control ml-2 search__area" placeholder="Filter">
+                        <i class='bx bx-filter-alt'></i>
+                    </div>
+                </form>
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="mr-2">
+                    <label for="" style=" color: #78838e;">Viewing 1 to 25 of 29 </label>
+                </div>
+                <div>
+                    <div class="pagination">
+                        <div class="leftpagprev">‹‹</div>
+                        <div class="leftpag">‹</div>
+                        <div class="rightpag">›</div>
+                        <div class="rightpagnext">››</div>
+                        <div class="pagnum">
+                            <select name="" id="">
+                                <option value="">1</option>
+                                <option value="">2</option>
+                                <option value="">3</option>
+                                <option value="">4</option>
+                                <option value="">5</option>
+                                <option value="">6</option>
+                                <option value="">7</option>
+                                <option value="">8</option>
+                                <option value="">9</option>
+                                <option value="">10</option>
+                            </select>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card rounded  border-0">
+                    <div class="card-body px-5 bg-white rounded">
+                        <div class="table-responsive">
+                            <table id="example1" style="width:100%" class="table table-bordered mainTable">
+                                <thead>
+                                    <tr>
+                                        <th class="selector nosort">
+                                            <input type="checkbox" id="all_orders">
+                                        </th>
+                                        <th>Store Name</th>
+                                        <th>Settlement ID</th>
+                                        <th>Settlement Start </th>
+                                        <th>Settlement End </th>
+                                        <th>Deposit Date</th>
+                                        <th>Total Amount</th>
+                                        <th>Currency</th>
+                                        <th>Posting Status</th>
+                                        <th class="nosort">View Details</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="selector">
+                                            <input type="checkbox" id="all_orders">
+
+                                            <td>001</td>
+                                            <td> <a href="">13759073501</a> </td>
+                                            <td>1/15/2021</td>
+                                            <td>1/29/2021</td>
+                                            <td>1/31/2021 6:17 AM</td>
+                                            <td>$625.93</td>
+                                            <td>USD</td>
+                                            <td>
+                                                <section>
+                                                    <div class="post_sts">Posted OK</div>
+                                                </section>
+                                            </td>
+                                            <td><a href="" class="text-info" data-toggle="modal" data-target="#exampleModal">Click here</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="selector">
+                                            <input type="checkbox" id="all_orders">
+
+                                            <td>002</td>
+                                            <td> <a href="">13737430391</a> </td>
+                                            <td>1/8/2021</td>
+                                            <td>1/22/2021</td>
+                                            <td>1/24/2021 8:03 PM</td>
+                                            <td>$23,504.63</td>
+                                            <td>USD</td>
+                                            <td>
+                                                <section>
+                                                    <div class="post_sts">Posted OK</div>
+                                                </section>
+                                            </td>
+                                            <td><a href="" class="text-info">Click here</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="selector">
+                                            <input type="checkbox" id="all_orders">
+
+                                            <td>003</td>
+                                            <td><a href="">13710396011</a> </td>
+                                            <td>1/1/2021</td>
+                                            <td>1/15/2021</td>
+                                            <td>1/17/2021 6:17 AM</td>
+                                            <td>$66.06</td>
+                                            <td>USD</td>
+                                            <td>
+                                                <section>
+                                                    <div class="post_sts">Posted OK</div>
+                                                </section>
+                                            </td>
+                                            <td><a href="" class="text-info">Click here</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="selector">
+                                            <input type="checkbox" id="all_orders">
+
+                                            <td>004</td>
+                                            <td><a href="">13687293711</a> </td>
+                                            <td>12/25/2020</td>
+                                            <td>1/8/2021</td>
+                                            <td>1/10/2021 8:03 PM</td>
+                                            <td>$27,266.23</td>
+                                            <td>USD</td>
+                                            <td>
+                                                <section>
+                                                    <div class="post_sts" style="background-color: #E0EAD7;">Click to Post</div>
+                                                </section>
+                                            </td>
+                                            <td><a href="" class="text-info">Click here</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="selector">
+                                            <input type="checkbox" id="all_orders">
+
+                                            <td>005</td>
+                                            <td> <a href="">13659593121</a> </td>
+                                            <td>12/18/2020</td>
+                                            <td>1/1/2021</td>
+                                            <td>1/3/2021 6:17 AM</td>
+                                            <td>$143.00</td>
+                                            <td>USD</td>
+                                            <td>
+                                                <section>
+                                                    <div class="post_sts">Posted OK</div>
+                                                </section>
+                                            </td>
+                                            <td><a href="" class="text-info">Click here</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="selector">
+                                            <input type="checkbox" id="all_orders">
+
+                                            <td>006</td>
+                                            <td><a href="">13759073501</a> </td>
+                                            <td>1/15/2021</td>
+                                            <td>1/29/2021</td>
+                                            <td>1/31/2021 6:17 AM</td>
+                                            <td>$625.93</td>
+                                            <td>USD</td>
+                                            <td>
+                                                <section>
+                                                    <div class="post_sts" style="background-color: #E0EAD7;">Click to Post</div>
+                                                </section>
+                                            </td>
+                                            <td><a href="" class="text-info" data-toggle="modal" data-target="#exampleModal">Click here</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="selector">
+                                            <input type="checkbox" id="all_orders">
+
+                                            <td>007</td>
+                                            <td><a href="">13737430391</a> </td>
+                                            <td>1/8/2021</td>
+                                            <td>1/22/2021</td>
+                                            <td>1/24/2021 8:03 PM</td>
+                                            <td>$23,504.63</td>
+                                            <td>USD</td>
+                                            <td>
+                                                <section>
+                                                    <div class="post_sts">Posted OK</div>
+                                                </section>
+                                            </td>
+                                            <td><a href="" class="text-info">Click here</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="selector">
+                                            <input type="checkbox" id="all_orders">
+
+                                            <td>008</td>
+                                            <td><a href="">13710396011</a> </td>
+                                            <td>1/1/2021</td>
+                                            <td>1/15/2021</td>
+                                            <td>1/17/2021 6:17 AM</td>
+                                            <td>$66.06</td>
+                                            <td>USD</td>
+                                            <td>
+                                                <section>
+                                                    <div class="post_sts" style="background-color: #E0EAD7;">Click to Post</div>
+                                                </section>
+                                            </td>
+                                            <td><a href="" class="text-info">Click here</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="selector">
+                                            <input type="checkbox" id="all_orders">
+
+                                            <td>009</td>
+                                            <td><a href="">13687293711</a> </td>
+                                            <td>12/25/2020</td>
+                                            <td>1/8/2021</td>
+                                            <td>1/10/2021 8:03 PM</td>
+                                            <td>$27,266.23</td>
+                                            <td>USD</td>
+                                            <td>
+                                                <section>
+                                                    <div class="post_sts">Posted OK</div>
+                                                </section>
+                                            </td>
+                                            <td><a href="" class="text-info">Click here</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="selector">
+                                            <input type="checkbox" id="all_orders">
+
+                                            <td>009</td>
+                                            <td><a href="">13687293711</a> </td>
+                                            <td>12/25/2020</td>
+                                            <td>1/8/2021</td>
+                                            <td>1/10/2021 8:03 PM</td>
+                                            <td>$27,266.23</td>
+                                            <td>USD</td>
+                                            <td>
+                                                <section>
+                                                    <div class="post_sts">Posted OK</div>
+                                                </section>
+                                            </td>
+                                            <td><a href="" class="text-info">Click here</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="selector">
+                                            <input type="checkbox" id="all_orders">
+
+                                            <td>009</td>
+                                            <td><a href="">13687293711</a> </td>
+                                            <td>12/25/2020</td>
+                                            <td>1/8/2021</td>
+                                            <td>1/10/2021 8:03 PM</td>
+                                            <td>$27,266.23</td>
+                                            <td>USD</td>
+                                            <td>
+                                                <section>
+                                                    <div class="post_sts" style="background-color: #E0EAD7;">Click to Post</div>
+                                                </section>
+                                            </td>
+                                            <td><a href="" class="text-info">Click here</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="selector">
+                                            <input type="checkbox" id="all_orders">
+
+                                            <td>009</td>
+                                            <td><a href="">13687293711</a> </td>
+                                            <td>12/25/2020</td>
+                                            <td>1/8/2021</td>
+                                            <td>1/10/2021 8:03 PM</td>
+                                            <td>$27,266.23</td>
+                                            <td>USD</td>
+                                            <td>
+                                                <section>
+                                                    <div class="post_sts">Posted OK</div>
+                                                </section>
+                                            </td>
+                                            <td><a href="" class="text-info">Click here</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="selector">
+                                            <input type="checkbox" id="all_orders">
+
+                                            <td>009</td>
+                                            <td><a href="">13687293711</a> </td>
+                                            <td>12/25/2020</td>
+                                            <td>1/8/2021</td>
+                                            <td>1/10/2021 8:03 PM</td>
+                                            <td>$27,266.23</td>
+                                            <td>USD</td>
+                                            <td>
+                                                <section>
+                                                    <div class="post_sts">Posted OK</div>
+                                                </section>
+                                            </td>
+                                            <td><a href="" class="text-info">Click here</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="selector">
+                                            <input type="checkbox" id="all_orders">
+
+                                            <td>010</td>
+                                            <td><a href="">13659593121</a> </td>
+                                            <td>12/18/2020</td>
+                                            <td>1/1/2021</td>
+                                            <td>1/3/2021 6:17 AM</td>
+                                            <td>$143.00</td>
+                                            <td>USD</td>
+                                            <td>
+                                                <section>
+                                                    <div class="post_sts">Posted OK</div>
+                                                </section>
+                                            </td>
+                                            <td><a href="" class="text-info">Click here</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="selector">
+                                            <input type="checkbox" id="all_orders">
+
+                                            <td>010</td>
+                                            <td><a href="">13659593121</a> </td>
+                                            <td>12/18/2020</td>
+                                            <td>1/1/2021</td>
+                                            <td>1/3/2021 6:17 AM</td>
+                                            <td>$143.00</td>
+                                            <td>USD</td>
+                                            <td>
+                                                <section>
+                                                    <div class="post_sts">Posted OK</div>
+                                                </section>
+                                            </td>
+                                            <td><a href="" class="text-info">Click here</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="selector">
+                                            <input type="checkbox" id="all_orders">
+
+                                            <td>010</td>
+                                            <td><a href="">13659593121</a> </td>
+                                            <td>12/18/2020</td>
+                                            <td>1/1/2021</td>
+                                            <td>1/3/2021 6:17 AM</td>
+                                            <td>$143.00</td>
+                                            <td>USD</td>
+                                            <td>
+                                                <section>
+                                                    <div class="post_sts">Posted OK</div>
+                                                </section>
+                                            </td>
+                                            <td><a href="" class="text-info">Click here</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="selector">
+                                            <input type="checkbox" id="all_orders">
+
+                                            <td>010</td>
+                                            <td><a href="">13659593121</a> </td>
+                                            <td>12/18/2020</td>
+                                            <td>1/1/2021</td>
+                                            <td>1/3/2021 6:17 AM</td>
+                                            <td>$143.00</td>
+                                            <td>USD</td>
+                                            <td>
+                                                <section>
+                                                    <div class="post_sts">Posted OK</div>
+                                                </section>
+                                            </td>
+                                            <td><a href="" class="text-info">Click here</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="selector">
+                                            <input type="checkbox" id="all_orders">
+
+                                            <td>010</td>
+                                            <td><a href="">13659593121</a> </td>
+                                            <td>12/18/2020</td>
+                                            <td>1/1/2021</td>
+                                            <td>1/3/2021 6:17 AM</td>
+                                            <td>$143.00</td>
+                                            <td>USD</td>
+                                            <td>
+                                                <section>
+                                                    <div class="post_sts">Posted OK</div>
+                                                </section>
+                                            </td>
+                                            <td><a href="" class="text-info">Click here</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="selector">
+                                            <input type="checkbox" id="all_orders">
+
+                                            <td>010</td>
+                                            <td><a href="">13659593121</a> </td>
+                                            <td>12/18/2020</td>
+                                            <td>1/1/2021</td>
+                                            <td>1/3/2021 6:17 AM</td>
+                                            <td>$143.00</td>
+                                            <td>USD</td>
+                                            <td>
+                                                <section>
+                                                    <div class="post_sts">Posted OK</div>
+                                                </section>
+                                            </td>
+                                            <td><a href="" class="text-info">Click here</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="selector">
+                                            <input type="checkbox" id="all_orders">
+
+                                            <td>010</td>
+                                            <td><a href="">13659593121</a> </td>
+                                            <td>12/18/2020</td>
+                                            <td>1/1/2021</td>
+                                            <td>1/3/2021 6:17 AM</td>
+                                            <td>$143.00</td>
+                                            <td>USD</td>
+                                            <td>
+                                                <section>
+                                                    <div class="post_sts">Posted OK</div>
+                                                </section>
+                                            </td>
+                                            <td><a href="" class="text-info">Click here</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="selector">
+                                            <input type="checkbox" id="all_orders">
+
+                                            <td>010</td>
+                                            <td><a href="">13659593121</a> </td>
+                                            <td>12/18/2020</td>
+                                            <td>1/1/2021</td>
+                                            <td>1/3/2021 6:17 AM</td>
+                                            <td>$143.00</td>
+                                            <td>USD</td>
+                                            <td>
+                                                <section>
+                                                    <div class="post_sts">Posted OK</div>
+                                                </section>
+                                            </td>
+                                            <td><a href="" class="text-info">Click here</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="selector">
+                                            <input type="checkbox" id="all_orders">
+
+                                            <td>010</td>
+                                            <td><a href="">13659593121</a> </td>
+                                            <td>12/18/2020</td>
+                                            <td>1/1/2021</td>
+                                            <td>1/3/2021 6:17 AM</td>
+                                            <td>$143.00</td>
+                                            <td>USD</td>
+                                            <td>
+                                                <section>
+                                                    <div class="post_sts">Posted OK</div>
+                                                </section>
+                                            </td>
+                                            <td><a href="" class="text-info">Click here</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="selector">
+                                            <input type="checkbox" id="all_orders">
+
+                                            <td>010</td>
+                                            <td><a href="">13659593121</a> </td>
+                                            <td>12/18/2020</td>
+                                            <td>1/1/2021</td>
+                                            <td>1/3/2021 6:17 AM</td>
+                                            <td>$143.00</td>
+                                            <td>USD</td>
+                                            <td>
+                                                <section>
+                                                    <div class="post_sts">Posted OK</div>
+                                                </section>
+                                            </td>
+                                            <td><a href="" class="text-info">Click here</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="selector">
+                                            <input type="checkbox" id="all_orders">
+
+                                            <td>010</td>
+                                            <td><a href="">13659593121</a> </td>
+                                            <td>12/18/2020</td>
+                                            <td>1/1/2021</td>
+                                            <td>1/3/2021 6:17 AM</td>
+                                            <td>$143.00</td>
+                                            <td>USD</td>
+                                            <td>
+                                                <section>
+                                                    <div class="post_sts">Posted OK</div>
+                                                </section>
+                                            </td>
+                                            <td><a href="" class="text-info">Click here</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="selector">
+                                            <input type="checkbox" id="all_orders">
+
+                                            <td>010</td>
+                                            <td><a href="">13659593121</a> </td>
+                                            <td>12/18/2020</td>
+                                            <td>1/1/2021</td>
+                                            <td>1/3/2021 6:17 AM</td>
+                                            <td>$143.00</td>
+                                            <td>USD</td>
+                                            <td>
+                                                <section>
+                                                    <div class="post_sts">Posted OK</div>
+                                                </section>
+                                            </td>
+                                            <td><a href="" class="text-info">Click here</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="selector">
+                                            <input type="checkbox" id="all_orders">
+
+                                            <td>010</td>
+                                            <td><a href="">13659593121</a> </td>
+                                            <td>12/18/2020</td>
+                                            <td>1/1/2021</td>
+                                            <td>1/3/2021 6:17 AM</td>
+                                            <td>$143.00</td>
+                                            <td>USD</td>
+                                            <td>
+                                                <section>
+                                                    <div class="post_sts">Posted OK</div>
+                                                </section>
+                                            </td>
+                                            <td><a href="" class="text-info">Click here</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Settlements Details</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                         </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <button class="btn btn-primaryOne py-2 float-right"> Send to Accounting</button>
+                            </div>
+                        </div>
+                        <div class="row px-lg-5 px-sm-3">
+                            <div class="col-sm-12 col-md-12 col-lg-8">
+                                <div class="details__content py-4">
+                                    <div class="mb-3 row">
+                                        <label for="staticEmail" class="col-sm-6 col-md-6 col-form-label">Store Name</label>
+                                        <label for="" class="col-sm-1">:</label>
+                                        <div class="col-sm-5 col-md-5">
+                                            <label class="col-form-label">001</label>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="inputPassword" class="col-sm-6 col-md-6 col-form-label">Settlement ID</label>
+                                        <label for="" class="col-sm-1">:</label>
+                                        <div class="col-sm-5 col-md-5">
+                                            <label class="col-form-label">13759073501</label>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="staticEmail" class="col-sm-6 col-md-6 col-form-label">Start Date</label>
+                                        <label for="" class="col-sm-1">:</label>
+                                        <div class="col-sm-5 col-md-5">
+                                            <label class="col-form-label">1/15/2021</label>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="inputPassword" class="col-sm-6 col-md-6 col-form-label">End Date</label>
+                                        <label for="" class="col-sm-1">:</label>
+                                        <div class="col-sm-5 col-md-5">
+                                            <label class="col-form-label">1/29/2021 </label>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="staticEmail" class="col-sm-6 col-md-6 col-form-label">Deposit Date</label>
+                                        <label for="" class="col-sm-1">:</label>
+                                        <div class="col-sm-5 col-md-5">
+                                            <label class="col-form-label">1/31/2021 6:17 AM </label>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="inputPassword" class="col-sm-6 col-md-6 col-form-label">Deposit Amount</label>
+                                        <label for="" class="col-sm-1">:</label>
+                                        <div class="col-sm-5 col-md-5">
+                                            <label class="col-form-label">$625.93 </label>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="inputPassword" class="col-sm-6 col-md-6 col-form-label">Currency</label>
+                                        <label for="" class="col-sm-1">:</label>
+                                        <div class="col-sm-5 col-md-5">
+                                            <label class="col-form-label">USD </label>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="inputPassword" class="col-sm-6 col-md-6 col-form-label">Posted on</label>
+                                        <label for="" class="col-sm-1">:</label>
+                                        <div class="col-sm-5 col-md-5">
+                                            <label class="col-form-label">03/18/2021 <span class="ml-3"></span></label>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="inputPassword" class="col-sm-6 col-md-6 col-form-label">Posting Status</label>
+                                        <label for="" class="col-sm-1">:</label>
+                                        <div class="col-sm-5 col-md-5">
+                                            <section>
+                                                <div class="post_sts">Posted OK</div>
+                                            </section>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="nav flex-row nav-pills nav-pills-custom tab-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                    <a class="nav-link active" id="nav-home-tab" data-toggle="tab" data-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">
+                                            Summary</a>
+                                    <a class="nav-link" id="nav-profile-tab" data-toggle="tab" data-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">
+                                          Posting Details</a>
+                                </div>
+                            </div>
+                            <div class="col-md-12 tab-content ">
+                                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                                    <div class="row ">
+                                        <div class="col-lg-12">
+                                            <div class="card rounded border-0">
+                                                <div class="card-body rounded p-0">
+                                                    <div class="table-responsive">
+                                                        <table id="example2" style="width:100%" class="table  table-bordered">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Account Type</th>
+                                                                    <th> Amount</th>
+
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>Order-ItemFees-Commission</td>
+                                                                    <td>($3,953.86)</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Order-ItemFees-FBAPerUnitFulfillmentFee</td>
+                                                                    <td>($470.20)</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Order-ItemFees-ShippingHB</td>
+                                                                    <td>($165.00)</td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <td>Order-ItemFees-Principal</td>
+                                                                    <td>$30,439.46</td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <td>Order-ItemFees-Shipping</td>
+                                                                    <td>$1060.72</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Order-ItemFees-Shipping Tax</td>
+                                                                    <td>$56.29</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Order-ItemFees-Tax</td>
+                                                                    <td>$1,929.88</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Order-ItemWithheldTax-MarketplaceFacilitatorTax-Principal</td>
+                                                                    <td>($1,931.43)</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Order-ItemWithheldTax-MarketplaceFacilitatorTax-Shipping</td>
+                                                                    <td>($56.97)</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Other-transaction-FBA Inventory Reimbursement-REVERSAL REIMBURSEMENT</td>
+                                                                    <td>$58.65</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                                    <div class="row ">
+                                        <div class="col-lg-12">
+                                            <div class="card rounded  border-0">
+                                                <div class="card-body rounded">
+                                                    <div class="table-responsive ">
+                                                        <table id="example3" style="width:100%" class="table table-bordered">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Transaction Type</th>
+                                                                    <th> Status</th>
+                                                                    <th>Date</th>
+                                                                    <th>Error Message</th>
+                                                                    <th>User</th>
+                                                                    <th>Reset On</th>
+                                                                    <th>QuickBooks Ref #</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>Customer</td>
+                                                                    <td>
+                                                                        <section>
+                                                                            <div class="post_sts">Posted OK</div>
+                                                                        </section>
+
+                                                                    </td>
+                                                                    <td>3/10/2021 1:32:51 PM</td>
+                                                                    <td>Tammy</td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Sales Reciept</td>
+                                                                    <td>
+                                                                        <section>
+                                                                            <div class="post_sts">Posted OK</div>
+                                                                        </section>
+                                                                    </td>
+                                                                    <td>3/10/2021 1:32:51 PM</td>
+                                                                    <td>Tammy</td>
+                                                                    <td>16281</td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="container d-flex justify-content-between align-items-center">
+                            <div class="">
+                                <a href="#" class="buttonDownload"> <i class="fa fa-download" aria-hidden="true"></i> Download as Excel</a>
+                            </div>
+                            <div class="submit_btn">
+                                <button type="button" class="btn shadow border-0 mr-4 action-btn" data-dismiss="modal"> Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="py-4">
+        <div class="d-flex justify-content-between align-items-baseline">
+            <a class="cancel text-white pl-3" href="#">Cancel</a>
+            <section class="p_labels">
+                <span id="ship_selected"><b id="sel_cnt">1</b> Selected</span>
+                <ul class="print">
+                    <li class="multiple"> <i class='bx bx-edit-alt'></i> Bulk Update</li>
+                    <li> <i class='bx bx-package'></i> Ship &amp; Print</li>
+                    <li> <i class='bx bx-printer'></i> Print Label</li>
+                    <li class="multiple"> <i class='bx bx-trash ml-4'></i> Delete</li>
+                </ul>
+            </section>
+        </div>
+
+    </footer>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/jquery.nicescroll.min.js"></script>
+    <script src="https://use.fontawesome.com/1453813cc4.js"></script>
+
+</body>
+
+</html>

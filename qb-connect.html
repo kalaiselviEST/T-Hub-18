@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QBConnections</title>
+
+    <link rel="stylesheet" href="assets/css/dash.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
+    <style>
+        .connection__status__icon {
+            position: relative;
+        }
+        
+        .status__card .btn {
+            position: relative;
+        }
+        
+        .status__card span.status-text.danger {
+            color: red !important;
+        }
+        
+        @keyframes loadingStatus {
+            from {
+                transform: translateY(0) scaleY(0.8);
+            }
+            to {
+                transform: translateY(-10px);
+            }
+        }
+        
+        .syncing {
+            animation: refresh 1s cubic-bezier(.36, .07, .57, .99) infinite;
+        }
+        
+        .loading {
+            opacity: 0;
+        }
+        
+        .hideText {
+            opacity: 0;
+            transition-duration: 0.3s;
+        }
+        
+        .showText {
+            opacity: 1;
+            transition-duration: 0.3s;
+        }
+        
+        @keyframes refresh {
+            from {
+                transform: rotate(0);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header  bg-secondaryColor">
+        <nav class="navbar navbar-expand-sm">
+            <a class="" href="#">
+                <div class="logo"></div>
+            </a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav m-auto">
+                    <li class="nav-item active dashboard">
+                        <a class="nav-link" href="#">Dashboard</a>
+                    </li>
+                    <li class="nav-item settings">
+                        <a class="nav-link" href="#">Settlements</a>
+                    </li>
+                    <li class="nav-item settings">
+                        <a class="nav-link" href="#">Settings</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item  dropdown mr-4 mt-2">
+                        <a href="#" data-toggle="dropdown" class="nav-link px-0 nav-link-user" aria-expanded="true">
+                            <i class="fa fa-bell text-white" style="font-size: 20px;"></i>
+                            <span class="badge">5</span>
+                        </a>
+                        <div class="screen-wrapper notifications__wrapper dropdown-menu dropdown-menu-right pullDown">
+                            <div class="card border-0">
+                                <div class="card-header bg-white flex-between">
+                                    <h5>Notifications</h5>
+                                    <label class="label label-danger">New</label>
+                                </div>
+                                <div class="card-body">
+                                    <div class="notification__item">
+                                        <div class="row">
+                                            <div class="notification__profile col-sm-2">
+                                            </div>
+                                            <div class="notification__content col-sm-10">
+                                                <h5 class="notification-user">John Doe</h5>
+                                                <p class="notification-msg mb-0">Lorem ipsum dolor sit amet, consectetuer elit.</p>
+                                                <small class="text-muted">30 mins ago  </small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="notification__item">
+                                        <div class="row">
+                                            <div class="notification__profile col-sm-2">
+                                            </div>
+                                            <div class="notification__content col-sm-10">
+                                                <h5 class="notification-user">John Doe</h5>
+                                                <p class="notification-msg mb-0">Lorem ipsum dolor sit amet, consectetuer elit.</p>
+                                                <small class="text-muted">30 mins ago  </small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="notification__item">
+                                        <div class="row">
+                                            <div class="notification__profile col-sm-2">
+                                            </div>
+                                            <div class="notification__content col-sm-10">
+                                                <h5 class="notification-user">John Doe</h5>
+                                                <p class="notification-msg mb-0">Lorem ipsum dolor sit amet, consectetuer elit.</p>
+                                                <small class="text-muted">30 mins ago  </small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item  dropdown">
+                        <a href="#" data-toggle="dropdown" class="nav-link px-0 nav-link-user" aria-expanded="true">
+                            <div id="profileIcon" class="profile-icon"></div>
+                            <span id="fullName" class="d-none">Penny Liu</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right pullDown">
+                            <a href="#" class="dropdown-item has-icon"> <i class="fa fa-user"></i> Profile</a>
+                            <a href="#" class="dropdown-item has-icon"> <i class="fa fa-bolt"></i> Activities </a>
+                            <a href="" class="dropdown-item has-icon"> <i class="fa fa-cog"></i> Settings </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item  text-danger"> <i class="fa fa-sign-out" aria-hidden="true"></i> Logout
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div class="page-content-wrapper qbo__wrapper bg-light-grey" style="height: 100vh;">
+        <div class="screen-wrapper mx-4 ">
+            <div class="options d-flex justify-content-between align-items-center px-0">
+                <h3>QuickBooks Connections </h3>
+                <p class="mb-0"><i>Manage your QuickBooks Connection. Click <a href="">Here</a> to change your back office system type. </i></p>
+            </div>
+            <div class="row mt-4">
+                <div class="col-lg-5 mt-4">
+                    <div class="btn-container" style="width: 300px;">
+                        <a href="">
+                            <img src="assets/images/connect-qb.png" alt="" class="w-100">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-7 flex-center my-md-3">
+                    <div class="card status__card">
+                        <div class="connection__status__icon flex-center mx-auto">
+                            <i class="fa fa-times  fa-2x text-danger"></i>
+                        </div>
+                        <div class="status__info py-5 px-1 m-auto">
+                            <div class="p-3">
+                                <h5 class="">Status : <span class="text-danger">Disconnected</span></h5>
+                            </div>
+                        </div>
+                        <div class="btn disconnect__btn m-auto pb-4" style="visibility: hidden;">
+                            <button class="border-0 action-btn text-white text-center" style="background-color:#eb7074 ; border-radius:30px"><a class="waitBeforeNavigate" href="qb-connect.html" target="_blank">Disconnect From QuickBooks</a></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://use.fontawesome.com/1453813cc4.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>

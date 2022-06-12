@@ -1,0 +1,54 @@
+<html>
+
+<head>
+    <title>Test</title>
+    <style>
+        object {
+            width: 100%;
+            height: 100%;
+            border: 0
+        }
+    </style>
+</head>
+
+<body>
+
+    <input id=file type=file onchange='fileChanged()' />
+    <object id="myPdf" type="application/pdf">
+                  
+                </object>
+    <img src="./" alt="">
+    <div id=log></div>
+    <div id="holder"></div>
+    <script>
+        var file;
+        var test = document.getElementById("myPdf");
+
+
+        function fileChanged() {
+            console.log("run fileChanged");
+
+            //get file
+            file = document.getElementById("file").files[0];
+            log.innerHTML = "file name: " + file.name;
+            console.log(file.name);
+            //following is how to use fileReader in a standard way
+
+            //new fileReader
+            var fileReader = new FileReader();
+            fileReader.readAsDataURL(file);
+            test.setAttribute("data", file.name);
+
+
+            //will be triggered when a file is loaded from input
+            fileReader.onload = function(e) {
+                console.log("fileReader.onload");
+                log.innerHTML += "<br>fileReader works";
+
+            };
+
+        }
+    </script>
+</body>
+
+</html>
